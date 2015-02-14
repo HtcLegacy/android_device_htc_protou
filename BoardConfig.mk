@@ -1,19 +1,4 @@
 #
-# Copyright (C) 2014 The CyanogenMod Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-#
 # This file sets variables that control the way modules are built
 # thorughout the system. It should not be used to conditionally
 # disable makefiles (the proper mechanism to control what gets
@@ -41,11 +26,12 @@ TARGET_GRALLOC_USES_ASHMEM := true
 TARGET_ARCH := arm
 TARGET_CPU_ABI  := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a5
 TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_VARIANT := cortex-a5
+TARGET_CPU_SMP := true
 TARGET_BOARD_PLATFORM := msm7x27a
 TARGET_BOOTLOADER_BOARD_NAME := 7х27
-TARGET_CPU_SMP := true
+
 
 TARGET_CORTEX_CACHE_LINE_32 := true
 TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
@@ -55,13 +41,13 @@ BOARD_USES_ADRENO_200 := true
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/htc/protou/kernel
-# TARGET_KERNEL_CONFIG := cyanogenmod_11_vee7_p715_defconfig
-# TARGET_KERNEL_CONFIG := cyanogenmod_11_vee7_p713_defconfig
-TARGET_KERNEL_CONFIG := cyanogenmod_11_vee7_nfc_led_defconfig
+BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=protou no_console_suspend=1
 BOARD_KERNEL_BASE    :=  0x03200000
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset  0x01200000
 BOARD_KERNEL_PAGESIZE := 2048
 #Spare size is (BOARD_KERNEL_PAGESIZE>>9)*16
+
+TARGET_PREBUILT_KERNEL := device/htc/protou/kernel
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
