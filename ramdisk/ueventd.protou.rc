@@ -75,13 +75,13 @@
 /sys/devices/virtual/smdpkt/smdcntl*       open_timeout   0664 radio radio
 /dev/sdio_tty_ciq_00      0660   system     system
 /dev/tty_sdio_00          0660   system     system
-#[LGE_CHANGE_S][narasimha.chikka@lge.com],usb diag interface
+#[htc_CHANGE_S][narasimha.chikka@htc.com],usb diag interface
 /dev/smd11                0660   system     system
 /dev/ttyGS0               0660   system     system
-#[LGE_CHANGE_E][narasimha.chikka@lge.com],usb diag interface
-#[LGE_CHANGE_S], LGE AutoRun function
+#[htc_CHANGE_E][narasimha.chikka@htc.com],usb diag interface
+#[htc_CHANGE_S], htc AutoRun function
 /dev/usb_autorun          0660   root       usb
-#[LGE_CHANGE_E], LGE AutoRun function
+#[htc_CHANGE_E], htc AutoRun function
 /dev/eac                  0660   root       audio
 /dev/pmem_audio           0660   system     audio
 /dev/pmem_adsp*           0660   system     audio

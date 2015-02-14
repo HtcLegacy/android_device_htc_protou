@@ -1,5 +1,5 @@
 on init
-    write /sys/class/android_usb/android0/f_rndis/manufacturer LGE
+    write /sys/class/android_usb/android0/f_rndis/manufacturer htc
     write /sys/class/android_usb/android0/f_rndis/vendorID 1004
     write /sys/class/android_usb/android0/f_rndis/wceis 1
 
@@ -23,7 +23,7 @@ on recovery
 on charger
     setprop sys.usb.config charge_only
 
-# 2012-10-09 ByungHo-LEE(lbh.lee@lge.com) [V3] does not mode Switching issue fix [START]
+# 2012-10-09 ByungHo-LEE(lbh.lee@htc.com) [V3] does not mode Switching issue fix [START]
 # Used to disable USB when switching states
 on property:sys.usb.config=none
     stop adbd
@@ -36,7 +36,7 @@ on property:sys.usb.config=none
 on property:persist.sys.usb.config=*
     setprop sys.usb.config ${persist.sys.usb.config}
 
-# 2012-10-09 ByungHo-LEE(lbh.lee@lge.com) [V3] does not mode Switching issue fix [END]
+# 2012-10-09 ByungHo-LEE(lbh.lee@htc.com) [V3] does not mode Switching issue fix [END]
 
 
 on property:sys.usb.config=adb

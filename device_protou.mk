@@ -85,9 +85,9 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-	device/htc/protou/ramdisk/fstab.vee7:root/fstab.vee7 \
- 	device/htc/protou/ramdisk/init.vee7.rc:root/init.vee7.rc \
-	device/htc/protou/ramdisk/ueventd.vee7.rc:root/ueventd.vee7.rc \
+	device/htc/protou/ramdisk/fstab.protou:root/fstab.protou \
+ 	device/htc/protou/ramdisk/init.protou.rc:root/init.protou.rc \
+	device/htc/protou/ramdisk/ueventd.protou.rc:root/ueventd.protou.rc \
 	device/htc/protou/ramdisk/init.htc.protou.rc:root/init.htc.protou.rc \
 	device/htc/protou/ramdisk/init.qcom.class_core.sh:root/init.qcom.class_core.sh \
 	device/htc/protou/ramdisk/init.qcom.class_main.sh:root/init.qcom.class_main.sh \
@@ -160,7 +160,7 @@ PRODUCT_PACKAGES += \
 # Keys
 PRODUCT_PACKAGES += \
     AVRCP.kl \
-    vee7_keypad \
+    protou_keypad \
     7k_handset.kl \
     touch_dev.kl
 

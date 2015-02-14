@@ -25,13 +25,13 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #capp_service
-import init.lge.rc
-import init.lge.usb.rc
+import init.htc.rc
+import init.usb.rc
 import init.target.rc
-import init.lge.p713.rc
+import init.htc.protou.rc
 import init.leds.nfc.rc
 
-#LGE_CHANGE_S [satya.kamasali@lge.com] 20121008:MPT Partition
+#htc_CHANGE_S [satya.kamasali@htc.com] 20121008:MPT Partition
 on init
    wait /dev/block/platform/msm_sdcc.3/by-num/p20
    wait /dev/block/platform/msm_sdcc.3/by-num/p16
@@ -48,12 +48,12 @@ on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
     mkdir /mpt 0771 system system
-#LGE_CHANGE_E [satya.kamasali@lge.com] 20121008
+#htc_CHANGE_E [satya.kamasali@htc.com] 20121008
     mkdir /persist-lg 0771 system system
 
-#+s LGBT_COMMON_FUNCTION_BRINGUP - jeonghoon.lim@lge.com 2011-12-10
+#+s LGBT_COMMON_FUNCTION_BRINGUP - jeonghoon.lim@htc.com 2011-12-10
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
-    mkdir /data/misc/bluetoothd 0770 bluetooth bluetooth    #moved from init.rc - jeonghoon.lim@lge.com
+    mkdir /data/misc/bluetoothd 0770 bluetooth bluetooth    #moved from init.rc - jeonghoon.lim@htc.com
 #+e LGBT_COMMON_FUNCTION_BRINGUP
 
     mkdir /storage 0751 system sdcard_r
@@ -94,15 +94,15 @@ on early-boot
     write /sys/module/lowmemorykiller/parameters/lmk_fast_run 0
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
- # LGE_CHANGE_S  : ATCMD_GKPD 2011-12-28,[myunghwan.kim@lge.com]
+ # htc_CHANGE_S  : ATCMD_GKPD 2011-12-28,[myunghwan.kim@htc.com]
  # M4 device event permission has been changed  ==> access permission rule has been changed at cts. please Change Access method.
 #    chmod 0777 /dev/input/event0
 #    chmod 0777 /dev/input/event5
 #    chmod 0777 /dev/input/event3
- # LGE_CHANGE_E : ATCMD_GKPD
-# LGE_CHANGE_S [khyun.kim@lge.com] 20121121 : increasing number of last_kmsg in dontpanic
+ # htc_CHANGE_E : ATCMD_GKPD
+# htc_CHANGE_S [khyun.kim@htc.com] 20121121 : increasing number of last_kmsg in dontpanic
     exec /system/bin/sh /system/etc/last_kmsg_backup.sh
-# LGE_CHANGE_E [khyun.kim@lge.com] 20121121
+# htc_CHANGE_E [khyun.kim@htc.com] 20121121
 
     exec /system/bin/toolbox mkswap /dev/block/zram0
     exec /system/bin/toolbox swapon /dev/block/zram0
@@ -127,7 +127,7 @@ on boot
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
   
-    # NFC Feature, 2012.10.31 - permission change 0660 --> 0600 gunbok@lge.com
+    # NFC Feature, 2012.10.31 - permission change 0660 --> 0600 gunbok@htc.com
     chmod 0600 /dev/pn544
     chown nfc nfc /dev/pn544
 
@@ -151,9 +151,9 @@ on boot
 #donghyub.cho 121129 BT a2dp frequency issue
     setprop af.resampler.quality 255
     # brightness properties
-	# sohyun.nam@lge.com, 2012.11.16, set default brightness from 149 for HW PP 1st
-    setprop ro.lge.lcd_default_brightness 178 
-	setprop ro.lge.lcd_auto_brightness_mode false
+	# sohyun.nam@htc.com, 2012.11.16, set default brightness from 149 for HW PP 1st
+    setprop ro.htc.lcd_default_brightness 178 
+	setprop ro.htc.lcd_auto_brightness_mode false
 
     setprop ro.telephony.call_ring.multiple false
 
@@ -174,7 +174,7 @@ on boot
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
      #USB  
-     #LGE_CHANGE_S : USB Autorun function. lbh.lee@lge.com
+     #htc_CHANGE_S : USB Autorun function. lbh.lee@htc.com
     chown system system /sys/class/android_usb/android0/f_ecm/ethaddr
     chmod 0664 /sys/class/android_usb/android0/f_ecm/ethaddr
     chown system system /sys/class/android_usb/android0/f_cdrom_storage/lun/cdrom_file
@@ -182,7 +182,7 @@ on boot
     chown system system /sys/class/android_usb/android0/f_cdrom_storage/lun/cdrom_usbmode
     chmod 0664 /sys/class/android_usb/android0/f_cdrom_storage/lun/cdrom_usbmode
     chown system system /system/usbautorun.iso
-    #LGE_CHANGE_E : USB Autorun function.
+    #htc_CHANGE_E : USB Autorun function.
     chown system system /sys/class/android_usb/android0/f_audio_source/pcm
     chmod 0664 /sys/class/android_usb/android0/f_audio_source/pcm
 
@@ -230,72 +230,72 @@ on boot
     chmod 0660 /dev/smd0
     chown system system /dev/smd0
   
-  # LGE_CHANGE_S  : AT-Command - SMD Port changed to 11, 2012-01-17
+  # htc_CHANGE_S  : AT-Command - SMD Port changed to 11, 2012-01-17
     chmod 0660 /dev/smd11
     chown system system /dev/smd11
-  # LGE_CHANGE_E  : AT-Command - SMD Port changed to 11, 2012-01-17
+  # htc_CHANGE_E  : AT-Command - SMD Port changed to 11, 2012-01-17
 
     chmod 0660 /dev/ttyGS0
     chown system system /dev/ttyGS0
 
-## [START] LGE_EMMC_SUPPORT [khyun.kim@lge.com] - this is for the testmode, permissions are required to access from userspace
+## [START] htc_EMMC_SUPPORT [khyun.kim@htc.com] - this is for the testmode, permissions are required to access from userspace
 
-    chown system system /sys/module/lge_emmc_direct_access/parameters/frst_flag
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/frst_flag
-    chown system system /sys/module/lge_emmc_direct_access/parameters/lge_swv
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/lge_swv
+    chown system system /sys/module/htc_emmc_direct_access/parameters/frst_flag
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/frst_flag
+    chown system system /sys/module/htc_emmc_direct_access/parameters/htc_swv
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/htc_swv
 
-    chown system system /sys/module/lge_emmc_direct_access/parameters/silent_reset
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/silent_reset
-    chown system system /sys/module/lge_emmc_direct_access/parameters/smpl_counter
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/smpl_counter
-    chown system system /sys/module/lge_emmc_direct_access/parameters/charging_bypass_boot
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/charging_bypass_boot
-    chown system system /sys/module/lge_emmc_direct_access/parameters/pseudo_battery_mode
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/pseudo_battery_mode
+    chown system system /sys/module/htc_emmc_direct_access/parameters/silent_reset
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/silent_reset
+    chown system system /sys/module/htc_emmc_direct_access/parameters/smpl_counter
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/smpl_counter
+    chown system system /sys/module/htc_emmc_direct_access/parameters/charging_bypass_boot
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/charging_bypass_boot
+    chown system system /sys/module/htc_emmc_direct_access/parameters/pseudo_battery_mode
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/pseudo_battery_mode
 
-    chown system system /sys/module/lge_emmc_direct_access/parameters/boot_info
-    chown system system /sys/module/lge_emmc_direct_access/parameters/is_factory
-    chown system system /sys/module/lge_emmc_direct_access/parameters/db_integrity_ready
-    chown system system /sys/module/lge_emmc_direct_access/parameters/fpri_crc_ready
-    chown system system /sys/module/lge_emmc_direct_access/parameters/file_crc_ready
-    chown system system /sys/module/lge_emmc_direct_access/parameters/db_dump_ready
-    chown system system /sys/module/lge_emmc_direct_access/parameters/db_copy_ready
-    chown system system /sys/module/lge_emmc_direct_access/parameters/integrity_ret
-    chown system system /sys/module/lge_emmc_direct_access/parameters/external_memory_test_diag
-    chown system system /sys/module/lge_emmc_direct_access/parameters/fota_id_check
-    chown system system /sys/module/lge_emmc_direct_access/parameters/hiddenmenu_factory_reset
+    chown system system /sys/module/htc_emmc_direct_access/parameters/boot_info
+    chown system system /sys/module/htc_emmc_direct_access/parameters/is_factory
+    chown system system /sys/module/htc_emmc_direct_access/parameters/db_integrity_ready
+    chown system system /sys/module/htc_emmc_direct_access/parameters/fpri_crc_ready
+    chown system system /sys/module/htc_emmc_direct_access/parameters/file_crc_ready
+    chown system system /sys/module/htc_emmc_direct_access/parameters/db_dump_ready
+    chown system system /sys/module/htc_emmc_direct_access/parameters/db_copy_ready
+    chown system system /sys/module/htc_emmc_direct_access/parameters/integrity_ret
+    chown system system /sys/module/htc_emmc_direct_access/parameters/external_memory_test_diag
+    chown system system /sys/module/htc_emmc_direct_access/parameters/fota_id_check
+    chown system system /sys/module/htc_emmc_direct_access/parameters/hiddenmenu_factory_reset
 #sohyun.nam 
-    chown system system /sys/module/lge_emmc_direct_access/parameters/lcd_k_cal
+    chown system system /sys/module/htc_emmc_direct_access/parameters/lcd_k_cal
 	chown system system /sys/devices/platform/msm_fb.590593/mdp_kcal
 
 #support CRTE
-#	chown system system /sys/module/lge_emmc_direct_access/parameters/misc_io
-#	chown system system /sys/module/lge_emmc_direct_access/parameters/misc_io_blk_no
-#	chown system system /sys/module/lge_emmc_direct_access/parameters/misc_io_size
-## [END] LGE_EMMC_SUPPORT 
+#	chown system system /sys/module/htc_emmc_direct_access/parameters/misc_io
+#	chown system system /sys/module/htc_emmc_direct_access/parameters/misc_io_blk_no
+#	chown system system /sys/module/htc_emmc_direct_access/parameters/misc_io_size
+## [END] htc_EMMC_SUPPORT 
 
-# LGE_CHANGE_S  : adiyoung.lee, FTM Mode and ManualModeCkeckComplete on RPC, 2012-12-12
-    chown system system /sys/module/lge_emmc_direct_access/parameters/aat_partial
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/aat_partial
-    chown system system /sys/module/lge_emmc_direct_access/parameters/ftm_boot_mode
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/ftm_boot_mode
-    chown system system /sys/module/lge_emmc_direct_access/parameters/aat_full
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/aat_full
-    chown system system /sys/module/lge_emmc_direct_access/parameters/aat_partial_or_full
-    chmod 0660 /sys/module/lge_emmc_direct_access/parameters/aat_partial_or_full
-# LGE_CHANGE_E  : adiyoung.lee, FTM Mode and ManualModeCkeckComplete on RPC, 2012-12-12
+# htc_CHANGE_S  : adiyoung.lee, FTM Mode and ManualModeCkeckComplete on RPC, 2012-12-12
+    chown system system /sys/module/htc_emmc_direct_access/parameters/aat_partial
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/aat_partial
+    chown system system /sys/module/htc_emmc_direct_access/parameters/ftm_boot_mode
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/ftm_boot_mode
+    chown system system /sys/module/htc_emmc_direct_access/parameters/aat_full
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/aat_full
+    chown system system /sys/module/htc_emmc_direct_access/parameters/aat_partial_or_full
+    chmod 0660 /sys/module/htc_emmc_direct_access/parameters/aat_partial_or_full
+# htc_CHANGE_E  : adiyoung.lee, FTM Mode and ManualModeCkeckComplete on RPC, 2012-12-12
 
-# LGE_START 20121101 seonbeom.lee [Security] porting security code.
+# htc_START 20121101 seonbeom.lee [Security] porting security code.
     wait /dev/block/mmcblk0p6
     chown root radio /dev/block/mmcblk0p6
     chmod 0770 /dev/block/mmcblk0p6
-# LGE_END 20121101 seonbeom.lee [Security] porting security code.
-# LGE_CHANGE_S : For LCD Cal
-# For LCD Cal khyun.kim@lge.com
+# htc_END 20121101 seonbeom.lee [Security] porting security code.
+# htc_CHANGE_S : For LCD Cal
+# For LCD Cal khyun.kim@htc.com
 	chown root system /dev/block/mmcblk0p8
 	chmod 0770 /dev/block/mmcblk0p8
-# LGE_CHANGE_E : For LCD Cal
+# htc_CHANGE_E : For LCD Cal
 
 
 # import cne init file
@@ -311,7 +311,7 @@ on post-fs-data
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
-# soung.mungi@lge.com AT/ATS refactoring [START]
+# soung.mungi@htc.com AT/ATS refactoring [START]
     chown system system /dev/atcmd-tty0
     chmod 0660 /dev/atcmd-tty0
     chown system system /dev/atcmd-tty1
@@ -320,7 +320,7 @@ on post-fs-data
 
     chmod 0664 /sys/class/leds/lcd-backlight/alc
     chmod 0664 /sys/class/leds/lcd-backlight/brightness
-# soung.mungi@lge.com AT/ATS refactoring [END]
+# soung.mungi@htc.com AT/ATS refactoring [END]
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
@@ -348,13 +348,13 @@ on post-fs-data
     chown system camera /sys/devices/platform/i2c-gpio.3/i2c-3/3-0030/brightness_uA
     chmod 0777          /sys/devices/platform/i2c-gpio.3/i2c-3/3-0030/brightness_uA
 
-    #LGE_CHANGE_S 20121218 sangjoo78.lee@le.com improving booting time from V5
-    #LGE_CHANGE_S 20121015 minkyu.ha@lge.com Governor change patch for Performance
+    #htc_CHANGE_S 20121218 sangjoo78.lee@le.com improving booting time from V5
+    #htc_CHANGE_S 20121015 minkyu.ha@htc.com Governor change patch for Performance
     chmod 0775 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 
-    #LGE_CHANGE_E 20121015 minkyu.ha@lge.com Governor change patch for Performance
-    #LGE_CHANGE_E 20121218 sangjoo78.lee@le.com improving booting time from V5
+    #htc_CHANGE_E 20121015 minkyu.ha@htc.com Governor change patch for Performance
+    #htc_CHANGE_E 20121218 sangjoo78.lee@le.com improving booting time from V5
 
     #Create directories for wiper services
     mkdir /data/wpstiles/ 0755 shell
@@ -384,7 +384,7 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@lge.com] 2012-11-05, Accelometer SENSOR
+#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@htc.com] 2012-11-05, Accelometer SENSOR
 #    chown system system /sys/class/input/input2/range
 #    chown system system /sys/class/input/input2/bandwidth
 #    chown system system /sys/class/input/input2/mode
@@ -414,9 +414,9 @@ on post-fs-data
 #	chown system system /sys/class/input/input3/rept_z
 #    chown system system /sys/class/input/input3/test
 #    chown system system /sys/class/input/input3/diag
-#[LGSI_SP4_BSP_END][kirankumar.vm@lge.com] 2012-11-05, Accelometer SENSOR
+#[LGSI_SP4_BSP_END][kirankumar.vm@htc.com] 2012-11-05, Accelometer SENSOR
 
-#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@lge.com] 2012-11-05, PROXIMITY SENSOR
+#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@htc.com] 2012-11-05, PROXIMITY SENSOR
     chown system system /sys/devices/platform/i2c-gpio.5/i2c-5/5-0039/enable
     chown system system /sys/devices/platform/i2c-gpio.5/i2c-5/5-0039/show
     #chown system system /sys/devices/platform/i2c-gpio.5/i2c-5/5-0039/pilt
@@ -431,8 +431,8 @@ on post-fs-data
     chmod 0660 /sys/devices/platform/i2c-gpio.5/i2c-5/5-0039/run_calibration
     chmod 0660 /sys/devices/platform/i2c-gpio.5/i2c-5/5-0039/prox_cal_data
     chmod 0660 /sys/devices/platform/i2c-gpio.5/i2c-5/5-0039/pdata
-#[LGSI_SP4_BSP_END][kirankumar.vm@lge.com] PROXIMITY_SENSOR
-# [LGE_BSP_S][yunmo.yang@lge.com] 2012-09-26  LP5521 RGB Driver
+#[LGSI_SP4_BSP_END][kirankumar.vm@htc.com] PROXIMITY_SENSOR
+# [htc_BSP_S][yunmo.yang@htc.com] 2012-09-26  LP5521 RGB Driver
    chown system system /sys/devices/platform/i2c-gpio.6/i2c-6/6-0032/led_pattern
    chown system system /sys/devices/platform/i2c-gpio.6/i2c-6/6-0032/led_blink
    chown system system /sys/devices/platform/i2c-gpio.6/i2c-6/6-0032/leds/R/brightness
@@ -441,21 +441,21 @@ on post-fs-data
    chown system system /sys/devices/platform/i2c-gpio.6/i2c-6/6-0032/leds/R/led_current
    chown system system /sys/devices/platform/i2c-gpio.6/i2c-6/6-0032/leds/G/led_current
    chown system system /sys/devices/platform/i2c-gpio.6/i2c-6/6-0032/leds/B/led_current
-# [LGE_BSP_E][yunmo.yang@lge.com] 2012-09-26 LP5521 RGB Driver
+# [htc_BSP_E][yunmo.yang@htc.com] 2012-09-26 LP5521 RGB Driver
 
-# [LGE_BSP_S][yunmo.yang@lge.com] knock on
+# [htc_BSP_S][yunmo.yang@htc.com] knock on
    chmod 660 /sys/class/input/input2/tap_enable
    chown system system /sys/class/input/input2/tap_enable
-# [LGE_BSP_S][yunmo.yang@lge.com] knock on
+# [htc_BSP_S][yunmo.yang@htc.com] knock on
 
-# [LGE_BSP_S][yunmo.yang@lge.com] knock on
+# [htc_BSP_S][yunmo.yang@htc.com] knock on
    chmod 660 /sys/class/input/input2/tap_enable
    chown system system /sys/class/input/input2/tap_enable
-# [LGE_BSP_S][yunmo.yang@lge.com] knock on
+# [htc_BSP_S][yunmo.yang@htc.com] knock on
 
-# LGE_CHANGE_S : 2013-02-20 sungmin.cho@lge.com for setting antibanding in runtime
+# htc_CHANGE_S : 2013-02-20 sungmin.cho@htc.com for setting antibanding in runtime
    chown media media /sys/devices/i2c-0/0-0060/antibanding
-# LGE_CHANGE_E : 2013-02-20 sungmin.cho@lge.com for setting antibanding in runtime
+# htc_CHANGE_E : 2013-02-20 sungmin.cho@htc.com for setting antibanding in runtime
 
 
     # Log Service [START]
@@ -464,18 +464,18 @@ on post-fs-data
     chmod 0775 /data/logger
     # Log Service [END]
 
-#LGE_CHANGE_S[satya.kamasali@lge.com]20121017:last_kmsg in dontpanic
+#htc_CHANGE_S[satya.kamasali@htc.com]20121017:last_kmsg in dontpanic
 #    copy /proc/last_kmsg /data/dontpanic/last_kmsg
 #    chown root log /data/dontpanic/last_kmsg
 #    chmod 0640 /data/dontpanic/last_kmsg
-#LGE_CHANGE_E[satya.kamasali@lge.com]20121017:last_kmsg in dontpanic
+#htc_CHANGE_E[satya.kamasali@htc.com]20121017:last_kmsg in dontpanic
 
 # Dummy file, to keep the API happy. The default firmware does both modes
     write /data/misc/wifi/fwpath ""
     chmod 0666 /data/misc/wifi/fwpath
 
     
-# LGE_CHANGE_S make directories in drm partion
+# htc_CHANGE_S make directories in drm partion
     chown system system /persist-lg
     chmod 0771 /persist-lg   
     mkdir /persist-lg/lgdrm 0770 lgdrm lgdrm_acc
@@ -513,7 +513,7 @@ on post-fs-data
     mkdir /persist-lg/callduration 0770 system radio
     chown system radio /persist-lg/callduration
     chmod 0770 /persist-lg/callduration
-# LGE_CHANGE_E make make directories in drm partion
+# htc_CHANGE_E make make directories in drm partion
 
 # Export GPIO56 for fusion targets to enable/disable hub
 service usbhub_init /system/bin/usbhub_init
@@ -522,7 +522,7 @@ service usbhub_init /system/bin/usbhub_init
    disabled
    oneshot
 
-#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@lge.com] 2012-09-06, SENSOR_DAEMON
+#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@htc.com] 2012-09-06, SENSOR_DAEMON
 
 # compass/accelerometer daemon
 service sensord /system/bin/sensord
@@ -530,7 +530,7 @@ service sensord /system/bin/sensord
         user system
         group system compass misc input
         class late_start
-#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@lge.com], SENSOR_DAEMON
+#[LGSI_SP4_BSP_BEGIN][kirankumar.vm@htc.com], SENSOR_DAEMON
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
@@ -565,11 +565,11 @@ service fuse_sdcard /system/bin/sdcard -u 1023 -g 1023 -l /data/media /mnt/shell
 on property:ro.fuse_sdcard=true
     start fuse_sdcard
 
-# LGE_CHANGE_S, G2-FS@lge.com, 2013-10-30, fuse for external_SD
+# htc_CHANGE_S, G2-FS@htc.com, 2013-10-30, fuse for external_SD
 service fuse_external_SD /system/bin/sdcard -u 1023 -g 1023 -w 1023 -d /mnt/media_rw/external_SD /storage/external_SD
     class late_start
     disabled
-# LGE_CHANGE_E, G2-FS@lge.com, 2013-10-30, fuse for external_SD
+# htc_CHANGE_E, G2-FS@htc.com, 2013-10-30, fuse for external_SD
 
 # Binding fuse mount point to /storage/emulated/legacy
 on property:init.svc.fuse_sdcard=running
@@ -609,14 +609,14 @@ on property:bluetooth.hciattach=false
 #BT_E: [PSIX-6304] L7II_KK_BRING_UP
 
 # LG_BTUI : BDADDR_LOADER [s]
-service bdaddr_loader /system/bin/bdaddr_loader_vee7
+service bdaddr_loader /system/bin/bdaddr_loader_protou
     user root
     group bluetooth net_bt_admin misc net_bt_stack
     disabled
     oneshot
 # LG_BTUI : BDADDR_LOADER [e]
 
-# +s LG_BTUI_ATCMD_DUTMODE munho2.lee@lge.com 110902, using QCT BT solution
+# +s LG_BTUI_ATCMD_DUTMODE alistair@htc.com 110902, using QCT BT solution
 service hciattach_dut /system/bin/logwrapper /system/bin/hciattach -n /dev/ttyHS0 qualcomm-ibs 3000000
     class late_start
     user bluetooth
@@ -644,7 +644,7 @@ service bridgemgrd /system/bin/bridgemgrd
     group radio qcom_diag
     disabled
 
-# LGE_CHANGE_S, myunghwan.kim@lge.com, [AT-CMD] AT/ATS Service
+# htc_CHANGE_S, myunghwan.kim@htc.com, [AT-CMD] AT/ATS Service
 service atd /system/bin/atd
     class late_start
     socket atd stream 0660 system inet
@@ -652,7 +652,7 @@ service atd /system/bin/atd
     group input inet graphics
     disabled
 
-# [LGE_CHANGE][narasimha.chikka@lge.com], usb diag interface
+# [htc_CHANGE][narasimha.chikka@htc.com], usb diag interface
 #service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
 #service port-bridge /system/bin/port-bridge /dev/smd11  /dev/ttyGS0
 service port-bridge /system/bin/port-bridge /dev/atcmd-tty1 /dev/ttyGS0
@@ -660,7 +660,7 @@ service port-bridge /system/bin/port-bridge /dev/atcmd-tty1 /dev/ttyGS0
     user system
     group system inet
     disabled
-# LGE_CHANGE_E, myunghwan.kim@lge.com, [AT-CMD] AT/ATS Service
+# htc_CHANGE_E, myunghwan.kim@htc.com, [AT-CMD] AT/ATS Service
 
 service qmiproxy /system/bin/qmiproxy
     class main
@@ -843,7 +843,7 @@ service battery_monitor /system/bin/battery_monitor
     group system
     disabled
 
-#+s LGBT_COMMON_FUNCTION_BRINGUP - jeonghoon.lim@lge.com, 2011-12-10
+#+s LGBT_COMMON_FUNCTION_BRINGUP - jeonghoon.lim@htc.com, 2011-12-10
 service bluetoothd /system/bin/logwrapper /system/bin/bluetoothd -n -d
     class late_start
     socket bluetooth stream 660 bluetooth bluetooth
@@ -935,11 +935,11 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
     disabled
     oneshot
 
-#LGE_CHANGE_S,charger logo changes
+#htc_CHANGE_S,charger logo changes
 #service charger /charger
 #    class charger
 on charger
-# LGE_CHANGE_S,narasimha.chikka@lge.com,Use Charge only Function
+# htc_CHANGE_S,narasimha.chikka@htc.com,Use Charge only Function
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 1004
     write /sys/class/android_usb/android0/idProduct 6300
@@ -948,7 +948,7 @@ on charger
     write /sys/class/android_usb/android0/bDeviceProtocol 0
     write /sys/class/android_usb/android0/functions charge_only
     write /sys/class/android_usb/android0/enable 1
-# LGE_CHANGE_E,narasimha.chikka@lge.com,Use Charge only Function
+# htc_CHANGE_E,narasimha.chikka@htc.com,Use Charge only Function
     #start qosmgrd
     write /sys/module/pm2/modes/cpu0/standalone_power_collapse/idle_enabled 1
     write /sys/module/pm2/modes/cpu1/standalone_power_collapse/idle_enabled 1
@@ -959,7 +959,7 @@ on charger
     #start adbd
     setprop sys.usb.state $(sys.usb.config)
     exec /sbin/chargerlogo
-#LGE_CHANGE_E,charger logo changes
+#htc_CHANGE_E,charger logo changes
 
 # Restart adbd so it can run as root
 on property:service.adb.root=1
@@ -967,11 +967,11 @@ on property:service.adb.root=1
     restart adbd
     write /sys/class/android_usb/android0/enable 1
 
-# [LGE_CHANGE_S][narasimha.chikka@lge.com],usb diag interface	
+# [htc_CHANGE_S][narasimha.chikka@htc.com],usb diag interface	
     chmod 0660 /dev/smd11  
 	chown system system /dev/smd11	
-# [LGE_CHANGE_E][narasimha.chikka@lge.com],usb diag interface
-# suhui.kim@lge.com for bluez logs
+# [htc_CHANGE_E][narasimha.chikka@htc.com],usb diag interface
+# suhui.kim@htc.com for bluez logs
 #service bluetoothd /system/bin/bluetoothd -n
 service bluetoothd /system/bin/logwrapper /system/bin/bluetoothd -n -d
     class late_start
@@ -1080,7 +1080,7 @@ on property:persist.service.dbcopy.enable=1
 on property:persist.service.dbcopy.enable=0
     stop db-copy
 
-#LGE_CHANGE_S[satya.kamasali@lge.com]20130109:improve SDcard read performance	
+#htc_CHANGE_S[satya.kamasali@htc.com]20130109:improve SDcard read performance	
 service sdread /system/bin/sh /system/etc/improve_sd_read_performance.sh	
    class late_start	
    user root	
@@ -1090,21 +1090,21 @@ on property:vold.sdcard_mount=1
    start sdread	
 on property:vold.sdcard_mount=0	
    stop sdread	
-#LGE_CHANGE_E[satya.kamasali@lge.com]20130109
+#htc_CHANGE_E[satya.kamasali@htc.com]20130109
 
-# LGE_CHANGE_S, khyun.kim@lge.com, FRST Flag Setting
+# htc_CHANGE_S, khyun.kim@htc.com, FRST Flag Setting
 on property:sys.lgsetupwizard.status=1
-    write /sys/module/lge_emmc_direct_access/parameters/frst_flag 4-5
+    write /sys/module/htc_emmc_direct_access/parameters/frst_flag 4-5
 on property:sys.lgsetupwizard.status=2
-    write /sys/module/lge_emmc_direct_access/parameters/frst_flag 5-6
-# LGE_CHANGE_E, khyun.kim@lge.com, FRST Flag Setting
+    write /sys/module/htc_emmc_direct_access/parameters/frst_flag 5-6
+# htc_CHANGE_E, khyun.kim@htc.com, FRST Flag Setting
 
-# LGE_CHANGE_S, khyun.kim@lge.com, QEM value setting on manual mode
+# htc_CHANGE_S, khyun.kim@htc.com, QEM value setting on manual mode
 on property:persist.sys.factory.qem=*
     setprop sys.factory.qem $persist.sys.factory.qem
-# LGE_CHANGE_E, khyun.kim@lge.com, QEM value setting on manual mode
+# htc_CHANGE_E, khyun.kim@htc.com, QEM value setting on manual mode
 
-#LGE_CHANGE_S 2012.04 lg-msp@lge.com MTS TEAM
+#htc_CHANGE_S 2012.04 lg-msp@htc.com MTS TEAM
 	service mtsd /system/bin/mtsd
 	class late_start
 	oneshot
@@ -1159,7 +1159,7 @@ on property:sys.mts.work=0
 	stop mtsd_radio
 	stop mtsd_system
 	stop mtsd_hist
-#LGE_CHANGE_E 2012.04 lg-msp@lge.com MTS TEAM
+#htc_CHANGE_E 2012.04 lg-msp@htc.com MTS TEAM
 
 # LGLINKBACKUP SystemService Daemon
 service bnrd /system/bin/bnrd
@@ -1167,10 +1167,10 @@ service bnrd /system/bin/bnrd
     socket bnrd stream 660 root system
     user root
     group system radio sdcard_rw
-#LGE_CHANGE_S 2012-11-28 khyun.kim@lge.com sw_version's value set to property via rapi.
+#htc_CHANGE_S 2012-11-28 khyun.kim@htc.com sw_version's value set to property via rapi.
 on property:sys.boot_completed=1
-    write /sys/module/lge_emmc_direct_access/parameters/lge_swv 1
-#LGE_CHANGE_E 2012-11-28 khyun.kim@lge.com sw_version's value set to property via rapi.
+    write /sys/module/htc_emmc_direct_access/parameters/htc_swv 1
+#htc_CHANGE_E 2012-11-28 khyun.kim@htc.com sw_version's value set to property via rapi.
 
 #Porting Rooting Check Tool
 service rctd /system/bin/rctd

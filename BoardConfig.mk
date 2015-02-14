@@ -53,7 +53,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 
-BOARD_KERNEL_CMDLINE :=  androidboot.hardware=vee7 msm_cpr.enable=0
+BOARD_KERNEL_CMDLINE :=  androidboot.hardware=protou msm_cpr.enable=0
 ARCH_ARM_HAVE_TLS_REGISTER := true
 BOARD_EGL_CFG := device/htc/protou/config/egl.cfg
 
