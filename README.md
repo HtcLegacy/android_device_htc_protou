@@ -1,6 +1,6 @@
-# Desire X port of CyanogenMod 11
+# Desire X port of CyanogenMod 12
 
-Hi there. I'm trying to port @weritos / @Y300-0100's CyanogenMod 11 for Optimus L7II (vee7) to HTC Desire X (protou).
+Hi there. I'm trying to port @Kirmaniarslan's CM12 for the HTC Explorer (pico) to HTC Desire X (protou).
 If you wish to contribute, make a fork or a pull request and I'll merge it.
 Any help (testing/developing/providing moral support) is appreciated. 
 
@@ -9,4 +9,6 @@ Any help (testing/developing/providing moral support) is appreciated.
 
 * [Outdated Protou repo](https://github.com/ProtouProject)
 
+* [Pico repo](https://github.com/HtcLegacy/android_device_htc_pico)
 
+* [HTCLegacy group on GitHub] (https://github.com/HtcLegacy/)
