@@ -1,9 +1,16 @@
+# Copyright (C) 2011 The Android Open Source Project
 #
-# This file sets variables that control the way modules are built
-# thorughout the system. It should not be used to conditionally
-# disable makefiles (the proper mechanism to control what gets
-# included in a build is to use PRODUCT_PACKAGES in a product
-# definition file).
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 #
 
 # inherit from common msm7x27a
@@ -15,9 +22,6 @@ BOARD_VENDOR := htc
 
 # Arch related defines and optimizations
 TARGET_BOOTLOADER_BOARD_NAME := protou
-
-# Don't generate block mode update zips
-BLOCK_BASED_OTA := false
 
 # Kernel
 BOARD_KERNEL_CMDLINE := console=ttyDCC0 androidboot.hardware=protou no_console_suspend=1
@@ -32,9 +36,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 251658240
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
 # Partitions
-# TARGET_USERIMAGES_USE_YAFFS2 := true
 TARGET_USERIMAGES_USE_EXT4 := true
-# TARGET_USERIMAGES_USE_F2FS := true
 
 # Inline kernel building
 TARGET_KERNEL_SOURCE := kernel/htc/protou/
@@ -77,9 +79,6 @@ BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 # Recovery
 BOARD_HAS_NO_SELECT_BUTTON := true
 TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
-ifeq($(TARGET_BUILD_VARIANT), eng)
-  BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/customrecoveryimg.mk
-endif
 
 # FM Radio
 BOARD_HAVE_FM_RADIO := true
@@ -103,6 +102,3 @@ TW_NEVER_UMOUNT_SYSTEM := true
 TW_TARGET_USES_QCOM_BSP := true
 TARGET_RECOVERY_INITRC := device/htc/protou/ramdisk/recovery/init.rc
 endif
-
-
-

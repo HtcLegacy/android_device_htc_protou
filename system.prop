@@ -1,6 +1,6 @@
 #
 # system.prop for protou
-# Adapted from htclegacy/android_device_htc_pico/system.prop
+#
 
 # Time between wifi scans in seconds. Keep it high to minimize battery drain.
 # This only affects the case in which there are remembered access points,

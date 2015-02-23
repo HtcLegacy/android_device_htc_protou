@@ -28,13 +28,6 @@ PRODUCT_PACKAGES += \
 # Build sim toolkit
 PRODUCT_PACKAGES += \
     Stk
-
-# F2FS
-PRODUCT_PACKAGES += \
-    mkfs.f2fs \
-    fsck.f2fs \
-    make_f2fs \
-    mkf2fsuserimg.sh	
     
 # Hardware properties 
 PRODUCT_COPY_FILES += \
@@ -126,15 +119,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/prebuilt/bin/bma150_usr:system/bin/bma150_usr \
     $(LOCAL_PATH)/prebuilt/bin/htc_ebdlogd:system/bin/htc_ebdlogd \
-    $(LOCAL_PATH)/prebuilt/bin/logcat2:system/bin/logcat2 \
-
-# DeviceSettings
-# PRODUCT_PACKAGES += \
-#     DeviceSettings
-
-#Int2Ext
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/prebuilt/etc/40int2ext:system/etc/40int2ext
+    $(LOCAL_PATH)/prebuilt/bin/logcat2:system/bin/logcat2
 
 # Keylayouts
 PRODUCT_COPY_FILES += \
@@ -161,4 +146,4 @@ ifeq ($(TARGET_UNOFFICIAL_BUILD_ID),)
 PRODUCT_PROPERTY_OVERRIDES += ro.hl.releasetype=NIGHTLY
 else
 PRODUCT_PROPERTY_OVERRIDES += ro.hl.releasetype=SNAPSHOT
-endif	
+endif
