@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-	$(LOCAL_DIR)/device_protou.mk
+	$(LOCAL_DIR)/protou.mk
